@@ -11,7 +11,7 @@ Expensivecamera is a camera that is expensive. For more info, see http://nethack
 
 
 
-Back yet? That link actually has nothing to do with this project. What it instead is my pet programming language crossbred between **Scheme**, **Nadeko**, **Smalltalk** and **JavaScript**. Expensive camera is currently implemented as a translator to JavaScript, but Expensivecamera is a specification rather than implementation, so don't hesitate to fork and implement however you like.
+Back yet? That link actually has nothing to do with this project. What it is instead is my pet programming language crossbred between **Scheme**, **Nadeko**, **Smalltalk** and **JavaScript**. Expensive camera is currently implemented as a translator to JavaScript, but Expensivecamera is a specification rather than implementation, so don't hesitate to fork and implement however you like.
 
 Now take a look at this not-very-good example:
 
@@ -36,7 +36,7 @@ Expensivecamera is an experimental language based around the paradigm specified 
 + Everything is an object
   + Including true, false and null
 + Objects are immutable
-  + For those who doesn't know, immutable means it can not be changed after creation
+  + For those who don't know, immutable means a thing can not be changed after creation
   + Thanks to `__proto__` delegation, copying is cheap (just like `cons`)
   + Since everything is an object, everything is immutable ;)
 + Fully justified beautiful syntax
@@ -62,7 +62,7 @@ git clone https://github.com/ympbyc/expensivecamera.git
 Usage
 -----
 
-I have not written the REPL for it yet...
+I have not written a REPL for it yet...
 
 ```
 cd expensivecamera
