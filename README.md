@@ -4,14 +4,16 @@ Expensivecamera
 an expensive camera.
 
 > You see here an expensive camera.
+
 > d - an expensive camera.
+
 > You are blinded by the flash!
 
 Expensivecamera is a camera that is expensive. For more info, see http://nethackwiki.com/wiki/Expensive_camera
 
 
 
-Back yet? That link actually has nothing to do with this project. What it is instead is my pet programming language crossbred between **Scheme**, **Nadeko**, **Smalltalk** and **JavaScript**. Expensive camera is currently implemented as a translator to JavaScript, but Expensivecamera is a specification rather than implementation, so don't hesitate to fork and implement however you like.
+Back yet? That link actually has nothing to do with this project. What it is instead is my pet programming language crossbred between **Scheme**, **Nadeko**, **Smalltalk** and **JavaScript**. Expensive camera is currently implemented as a translator to JavaScript, but Expensivecamera is a paradigm rather than implementation, so don't hesitate to fork and implement however you like.
 
 Now take a look at this not-very-good example:
 
@@ -53,7 +55,7 @@ Expensivecamera is an experimental language based around the paradigm specified 
 Installation
 ------------
 
-**BEWARE: I started writing Expensivecamera on January 26th 2013. It obviously means it isn't ready for any means of production use.**
+**BEWARE: I started writing Expensivecamera on January 26th 2013. This obviously means it isn't ready for any means of production use.**
 
 ```
 git clone https://github.com/ympbyc/expensivecamera.git
