@@ -116,7 +116,9 @@
       _this.skipSpace();
       selector = _this.selector();
       _this.space();
-      arg = _this.expression();
+      arg = _this.optional(function () {
+        return _this.expression();
+      });
       return (((('[' + selector) + '](') + arg) + ')');
     });
   };

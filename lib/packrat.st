@@ -108,7 +108,7 @@ Object
 !Packrat optional: parser | ret i |
   "Never fails. When not matched return an empty string."
   i := index.
-  [ parser call: self ] tryCatch: [ index := i. null ]!.
+  [ parser call: self ] tryCatch: [ index := i. '' ]!.
 
 !Packrat followedBy: parser | f i |
   "OK if the parser matches."

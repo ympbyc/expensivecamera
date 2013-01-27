@@ -59,10 +59,7 @@ Packrat subclass:#Excam variables: #().
     self try_: #(
       [self symbol]
       [self literal]
-      [self lambda]
-      "[self between: [self chr: '('. self skipSpace]
-            and:     [self skipSpace. self chr: ')']
-            accept:  [self expression]]")]!.
+      [self lambda])]!.
 
 !Excam selector
   self cache: #selector aParser: [
@@ -74,7 +71,7 @@ Packrat subclass:#Excam variables: #().
     self skipSpace.
     selector := self selector.
     self space.
-    arg := self expression.
+    arg := self optional: [self expression].
     '[' + selector + '](' + arg + ')']!.
 
 !Excam funcall
