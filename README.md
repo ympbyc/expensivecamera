@@ -75,13 +75,18 @@ node
 Run tests
 ---------
 
-Coming soon
+```
+cd tests
+browserify tests.js -o tests-b.js
+```
+
+and open `index.html` in **firefox** because the test uses `__noSuchMethod__`
 
 
 Contribute
 ----------
 
-Expensivecamera is written in LittleSmallscript. Please learn it and hack on.
+Expensivecamera is written in LittleSmallscript. Learn it and hack on.
 
 LICENCE
 -------
