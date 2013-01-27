@@ -155,7 +155,7 @@ Object
 !Packrat satisfyChar: fn | c |
   "Character that satisfies the parser given"
   c := self anyChar.
-  ((fn value: c) !== undefined) ifTrue: [c] ifFalse: [self noParse]!.
+  (fn value: c) ifTrue: [c] ifFalse: [self noParse]!.
 
 !Packrat chr: ch | c |
   "Matches the given character"

@@ -20,18 +20,22 @@ Packrat subclass:#Excam variables: #().
   self cache: #symbol aParser: [
     self regex: (RegExp new: '^[a-zA-Z_$][a-zA-Z0-9_$]*')]!.
 
+!Excam identifier
+  self cache: #identifier aParser: [
+    self many1:[self satisfyChar: [ :c | (c search: </[\s\n\t]/>) === -1  ]]]!.
+
 !Excam equal
   self cache: #equal aParser: [
     self string: '==']!.
 
 !Excam rightArrow
-  self cache: #roghtArrow aParser: [
+  self cache: #rightArrow aParser: [
     self string: '->']!.
 
 !Excam lambda
   self cache: #lambda aParser: [
     self between: [ self chr: '[' ]
-         and:     [ self chr:']' ]
+         and:     [ self skipSpace. self chr:']' ]
          accept:  [
            self try_: #(
              [|s| s := 'function () { return ' + self expression + ' }'. self skipSpace. self followedBy:[self chr:']']. s]
@@ -60,14 +64,18 @@ Packrat subclass:#Excam variables: #().
             and:     [self skipSpace. self chr: ')']
             accept:  [self expression]]")]!.
 
+!Excam selector
+  self cache: #selector aParser: [
+    self chr: '.'.
+    '\'' + self identifier + '\'']!.
+
 !Excam methodInvocation
   self cache: #methodInvocation aParser: [| selector arg |
     self skipSpace.
-    self chr: '.'.
-    selector := self symbol.
+    selector := self selector.
     self space.
     arg := self expression.
-    '.' + selector + '(' + arg + ')']!.
+    '[' + selector + '](' + arg + ')']!.
 
 !Excam funcall
   self cache: #funcall aParser: [| arg  |
@@ -98,19 +106,19 @@ Packrat subclass:#Excam variables: #().
 
 !Excam numberLit
   self cache: #numberLit aParser: [
-    self regex: (RegExp new: '^-?[0-9]+(\\.?[0-9]+)?')]!.
+    '(' + (self regex: (RegExp new: '^-?[0-9]+(\\.?[0-9]+)?')) + ')']!.
 
 !Excam stringLit
-  self cache: #stringLit aParser: [
-    '\''
-    + ((self
-          between: [self char: '\'']
-          and:     [self char: '\'']
+  self cache: #stringLit aParser: [| str |
+    str := (self
+          between: [self chr: '\'']
+          and:     [self chr: '\'']
           accept:  [| c |
             c := self anyChar.
             c === '\\' ifTrue: [c + self anyChar]
-                       ifFalse:[ c ]])
-    rep:</\n/g> lace:'\\n') + '\'']!.
+                       ifFalse:[ c ]]).
+    str := str rep:</\n/g> lace:'\\n'.
+    '\'' + str  + '\'']!.
 
 !Excam literal
   self cache: #literal aParser: [
@@ -130,10 +138,14 @@ Packrat subclass:#Excam variables: #().
 
 !Excam program
   self cache: #program aParser: [| decs exp |
-    decs := self many: [self declaration].
+    decs :=　self many: [self declaration].
     self skipSpace.
     exp := (self optional: [self expression]) || ''.
     decs + exp]!.
+
+Excam at: #parse put: [ :str | | excam  |
+  excam := Excam new: str.
+  excam program].
 
 module at: #exports put: Excam.
 

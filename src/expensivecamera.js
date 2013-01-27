@@ -28,6 +28,16 @@
       return _this.regex(new RegExp('^[a-zA-Z_$][a-zA-Z0-9_$]*'));
     });
   };
+  Excam.prototype.identifier = function () {
+    var _this = this;
+    return _this.cacheaParser('identifier', function () {
+      return _this.many1(function () {
+        return _this.satisfyChar(function (c) {
+          return (c.search(/[\s\n\t]/) === -1);
+        });
+      });
+    });
+  };
   Excam.prototype.equal = function () {
     var _this = this;
     return _this.cacheaParser('equal', function () {
@@ -36,7 +46,7 @@
   };
   Excam.prototype.rightArrow = function () {
     var _this = this;
-    return _this.cacheaParser('roghtArrow', function () {
+    return _this.cacheaParser('rightArrow', function () {
       return _this.string('->');
     });
   };
@@ -46,6 +56,7 @@
       return _this.betweenandaccept((function () {
         return _this.chr('[');
       }), (function () {
+        _this.skipSpace();
         return _this.chr(']');
       }), function () {
         return _this.try_([function () {
@@ -91,16 +102,22 @@
       }]);
     });
   };
+  Excam.prototype.selector = function () {
+    var _this = this;
+    return _this.cacheaParser('selector', function () {
+      _this.chr('.');
+      return (('\'' + _this.identifier()) + '\'');
+    });
+  };
   Excam.prototype.methodInvocation = function () {
     var _this = this;
     return _this.cacheaParser('methodInvocation', function () {
       var selector, arg;
       _this.skipSpace();
-      _this.chr('.');
-      selector = _this.symbol();
+      selector = _this.selector();
       _this.space();
       arg = _this.expression();
-      return (((('.' + selector) + '(') + arg) + ')');
+      return (((('[' + selector) + '](') + arg) + ')');
     });
   };
   Excam.prototype.funcall = function () {
@@ -145,16 +162,17 @@
   Excam.prototype.numberLit = function () {
     var _this = this;
     return _this.cacheaParser('numberLit', function () {
-      return _this.regex(new RegExp('^-?[0-9]+(\\.?[0-9]+)?'));
+      return (('(' + _this.regex(new RegExp('^-?[0-9]+(\\.?[0-9]+)?'))) + ')');
     });
   };
   Excam.prototype.stringLit = function () {
     var _this = this;
     return _this.cacheaParser('stringLit', function () {
-      return (('\'' + _this.betweenandaccept((function () {
-        return _this.char('\'');
+      var str;
+      str = _this.betweenandaccept((function () {
+        return _this.chr('\'');
       }), (function () {
-        return _this.char('\'');
+        return _this.chr('\'');
       }), function () {
         var c;
         c = _this.anyChar();
@@ -163,7 +181,9 @@
         }))() : (function () {
           return c;
         })();
-      }).replace(/\n/g, '\\n')) + '\'');
+      });
+      str = str.replace(/\n/g, '\\n');
+      return (('\'' + str) + '\'');
     });
   };
   Excam.prototype.literal = function () {
@@ -202,6 +222,11 @@
       }) || '');
       return (decs + exp);
     });
+  };
+  Excam.parse = function (str) {
+    var excam;
+    excam = new Excam(str);
+    return excam.program();
   };
   module.exports = Excam;
   return Excam;
