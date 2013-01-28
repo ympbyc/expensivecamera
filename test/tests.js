@@ -80,6 +80,7 @@ test("message", function () {
   strictEqual(E.message('(foo (a 5)) '), 'foo(a((5)))', "fn fn");
   strictEqual(E.message('( foo .bar (a 5) ) '), "foo[\'bar\'](a((5)))", "mtd fn");
   strictEqual(E.message('(5 .bar (a 5) .baz 7) '), "(5)[\'bar\'](a((5)))[\'baz\']((7))", "mtd fn mtd");
+  strictEqual(E.message('( 5 .foo .bar .baz )'), "(5)['foo']()['bar']()['baz']()", 'mtd mtd mtd');
 });
 
 test("expression", function () {

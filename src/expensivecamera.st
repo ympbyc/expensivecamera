@@ -72,6 +72,7 @@ Packrat subclass:#Excam variables: #().
     selector := self selector.
     self space.
     arg := self optional: [self expression].
+    self skipSpace.
     '[' + selector + '](' + arg + ')']!.
 
 !Excam funcall

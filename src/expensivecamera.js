@@ -119,6 +119,7 @@
       arg = _this.optional(function () {
         return _this.expression();
       });
+      _this.skipSpace();
       return (((('[' + selector) + '](') + arg) + ')');
     });
   };

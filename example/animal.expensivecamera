@@ -1,0 +1,10 @@
+animal == (object .attr 'name' ''
+                  .attr 'move' [meters -> (this .s 'name' .++ ' moved ' .++ meters .++ 'm.')])
+
+sam  == (animal .attr 'name' 'Sammy the Python'
+  .~> [self -> (self .attr 'move' [('Slithering...' .++ (self .move 5))])])
+
+tom  == (animal .attr 'name' 'Tommy the Palomino'
+  .~> [self -> (self .attr 'move' [('Galloping...' .++ (self .move 45))])])
+
+( sam .move .++ ( tom .move ) )

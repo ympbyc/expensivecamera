@@ -27,7 +27,7 @@ sam  == (animal .attr 'name' 'Sammy the Python'
 tom  == (animal .attr 'name' 'Tommy the Palomino'
   .~> [self -> (self .attr 'move' [('Galloping...' .++ (self .move 45))])])
 
-(sam .move .++ (tom .move))
+( sam .move .++ ( tom .move ) )
 ```
 
 What you can tell from this is that it is a prototype-based object-oriented language and you don't see any assignment.
