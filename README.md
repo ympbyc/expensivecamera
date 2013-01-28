@@ -64,14 +64,11 @@ git clone https://github.com/ympbyc/expensivecamera.git
 Usage
 -----
 
-I have not written a REPL for it yet...
-
-```
+```bash
 cd expensivecamera
-node
-> require('./lib/o_O-p')
-> var excam = require('./src/expensivecamera')
-> eval(excam.parse("    'your code here'      "))
+echo " your code here " | node index.js
+#or
+cat yourfile | node index.js
 ```
 
 Run tests

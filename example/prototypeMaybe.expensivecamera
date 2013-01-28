@@ -1,0 +1,2 @@
+(object ._{}_ 'force' [( this .value )]
+ .>>= [obj -> ( [(alert 'I am in a thunk')] .force )])
