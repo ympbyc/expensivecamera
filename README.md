@@ -13,7 +13,7 @@ Expensivecamera is a camera that is expensive. For more info, see http://nethack
 
 
 
-Back yet? That link actually has nothing to do with this project. What it is instead is my pet programming language crossbred between **Scheme**, **Nadeko**, **Smalltalk** and **JavaScript**. Expensive camera is currently implemented as a translator to JavaScript, but Expensivecamera is a paradigm rather than implementation, so don't hesitate to fork and implement however you like.
+Back yet? That link actually has nothing to do with this project. What it is instead is my pet programming language crossbred between **Scheme**, **Nadeko**, **Smalltalk** and **JavaScript**. Expensivecamera is currently implemented as a translator to JavaScript, but Expensivecamera is a paradigm rather than implementation, so don't hesitate to fork and implement however you like.
 
 Now take a look at this not-very-good example:
 
