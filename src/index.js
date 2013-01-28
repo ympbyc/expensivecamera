@@ -1,25 +1,29 @@
 (function () {
   'use strict';
 
-  var fs, excam, beautify;
+  var fs, excam, beautify, inputText;
 
   fs = require('fs');
   excam = require('./expensivecamera');
   beautify = require('../lib/beautify');
 
-  if (process.argv[2]) {
-    fs.readFile(process.argv[2], 'utf8', function (err, src) {
-      if (err) throw err;
-      console.log(
-        beautify.js_beautify(excam.parse(src), {
+  inputText = '';
+
+  process.stdin.resume();
+  process.stdin.setEncoding('utf8');
+
+  process.stdin.on('data', function (chunk) {
+    inputText += chunk;
+  });
+
+  process.stdin.on('end', function () {
+    console.log(
+        beautify.js_beautify(excam.parse(inputText), {
           indent_size: 2
         , indent_char: ' '
         , jslint_happy: true
         }));
-    });
-  }
+    inputText = '';
+  });
 
-  else {
-    console.log('REPL is comming soon');
-  }
 }());
