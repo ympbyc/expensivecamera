@@ -4,8 +4,8 @@
   var fs, excam, beautify, inputText;
 
   fs = require('fs');
-  excam = require('./expensivecamera');
-  beautify = require('../lib/beautify');
+  excam = require('./src/expensivecamera');
+  beautify = require('./lib/beautify');
 
   inputText = '';
 

@@ -64,11 +64,17 @@ git clone https://github.com/ympbyc/expensivecamera.git
 Usage
 -----
 
+index.js provides a Unixy interface. Pipe in your input and redirect the output into a file.
+
 ```bash
 cd expensivecamera
+
 echo " your code here " | node index.js
 #or
 cat yourfile | node index.js
+
+#to save
+cat yourfile.expensivecamera | node index.js > yourfile.js
 ```
 
 Run tests
