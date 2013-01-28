@@ -104,7 +104,7 @@ Packrat subclass:#Excam variables: #().
 
 !Excam numberLit
   self cache: #numberLit aParser: [
-    '(' + (self regex: (RegExp new: '^-?[0-9]+(\\.?[0-9]+)?')) + ')']!.
+    self regex: (RegExp new: '^-?[0-9]+(\\.?[0-9]+)?')]!.
 
 !Excam stringLit
   self cache: #stringLit aParser: [| str |

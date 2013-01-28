@@ -165,7 +165,7 @@
   Excam.prototype.numberLit = function () {
     var _this = this;
     return _this.cacheaParser('numberLit', function () {
-      return (('(' + _this.regex(new RegExp('^-?[0-9]+(\\.?[0-9]+)?'))) + ')');
+      return _this.regex(new RegExp('^-?[0-9]+(\\.?[0-9]+)?'));
     });
   };
   Excam.prototype.stringLit = function () {
