@@ -33,7 +33,7 @@
     return _this.cacheaParser('identifier', function () {
       return _this.many1(function () {
         return _this.satisfyChar(function (c) {
-          return (c.search(/[\s\n\t]/) === -1);
+          return (c.search(/[\s\n\t\(\)]/) === -1);
         });
       });
     });
@@ -115,8 +115,8 @@
       var selector, arg;
       _this.skipSpace();
       selector = _this.selector();
-      _this.space();
       arg = _this.optional(function () {
+        _this.space();
         return _this.expression();
       });
       _this.skipSpace();

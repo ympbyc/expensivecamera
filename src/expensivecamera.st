@@ -22,7 +22,7 @@ Packrat subclass:#Excam variables: #().
 
 !Excam identifier
   self cache: #identifier aParser: [
-    self many1:[self satisfyChar: [ :c | (c search: </[\s\n\t]/>) === -1  ]]]!.
+    self many1:[self satisfyChar: [ :c | (c search: </[\s\n\t\(\)]/>) === -1  ]]]!.
 
 !Excam equal
   self cache: #equal aParser: [
@@ -70,8 +70,7 @@ Packrat subclass:#Excam variables: #().
   self cache: #methodInvocation aParser: [| selector arg |
     self skipSpace.
     selector := self selector.
-    self space.
-    arg := self optional: [self expression].
+    arg := self optional: [self space. self expression].
     self skipSpace.
     '[' + selector + '](' + arg + ')']!.
 
