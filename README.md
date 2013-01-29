@@ -75,6 +75,11 @@ cat yourfile | node index.js
 
 #to save
 cat yourfile.expensivecamera | node index.js > yourfile.js
+
+#to run
+cat yourfile.expensivecamera | node index.js | sed -e '1s/^/require("\.\/lib\/o_O-p");/g' | node -p
+
+#...likewise
 ```
 
 Run tests
