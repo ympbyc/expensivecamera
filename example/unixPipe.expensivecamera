@@ -1,0 +1,7 @@
+generator == (unix .: 'main' [x -> self -> ([(self .stdout 5)] .periodically 1000)])
+
+squarer == (unix .: 'main' [x -> self -> (self .stdout (x .* x))])
+
+printer == (unix .: 'main' [x -> self -> (console .log x)])
+
+(generator .| (squarer .| printer) .stdin)
